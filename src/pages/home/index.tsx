@@ -95,6 +95,26 @@ const Home: React.FC = () => {
     },
   ];
 
+  const fileTips = [
+    {
+      startsWith: "audio/",
+      component: (
+        <audio controls src={selectedFile?.url} className={styles.modalContent} />
+      ),
+    },
+    {
+      startsWith: "video/",
+      component: (
+        <video controls src={selectedFile?.url} className={styles.modalContent} />
+      ),
+    },
+    {
+      startsWith: "image/",
+      component: <img src={selectedFile?.url} className={styles.modalContent} />,
+    },
+  ];
+  
+
   return (
     <>
       <div className={styles.container}>
@@ -120,14 +140,9 @@ const Home: React.FC = () => {
           {selectedFile && (
             <>
               {fileTips.map((filee) =>
-                selectedFile.type.startsWith(filee.startsWith) ? (
-                  <filee.tag
-                    controls
-                    src={selectedFile.url}
-                    alt="Selected File"
-                    className={styles.modalContent}
-                  />
-                ) : null
+                selectedFile.type.startsWith(filee.startsWith)
+                  ? filee.component
+                  : null
               )}
             </>
           )}
@@ -139,17 +154,3 @@ const Home: React.FC = () => {
 
 export default Home;
 
-const fileTips = [
-  {
-    startsWith: "audio/",
-    tag: "audio",
-  },
-  {
-    startsWith: "video/",
-    tag: "video",
-  },
-  {
-    startsWith: "image/",
-    tag: "img",
-  },
-];
