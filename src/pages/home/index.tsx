@@ -3,9 +3,8 @@ import { Table, Modal, notification } from "antd";
 import styles from "./index.module.scss";
 
 const Home: React.FC = () => {
-  const [blobUrls, setBlobUrls] = useState<
-    { url: string; type: string; name: string }[]
-  >([]);
+
+  const [blobUrls, setBlobUrls] = useState<{ url: string; type: string; name: string }[]>([]);
   const [selectedFile, setSelectedFile] = useState<{
     url: string;
     type: string;
@@ -95,25 +94,35 @@ const Home: React.FC = () => {
     },
   ];
 
+
   const fileTips = [
     {
       startsWith: "audio/",
       component: (
-        <audio controls src={selectedFile?.url} className={styles.modalContent} />
+        <audio
+          controls
+          src={selectedFile?.url}
+          className={styles.modalContent}
+        />
       ),
     },
     {
       startsWith: "video/",
       component: (
-        <video controls src={selectedFile?.url} className={styles.modalContent} />
+        <video
+          controls
+          src={selectedFile?.url}
+          className={styles.modalContent}
+        />
       ),
     },
     {
       startsWith: "image/",
-      component: <img src={selectedFile?.url} className={styles.modalContent} />,
+      component: (
+        <img src={selectedFile?.url} className={styles.modalContent} />
+      ),
     },
   ];
-  
 
   return (
     <>
@@ -153,4 +162,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
